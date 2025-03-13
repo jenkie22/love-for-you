@@ -4,242 +4,240 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Love For You</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #e83e8c;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: floatHeart 4s ease-in-out infinite;
+            opacity: 0.6;
+            z-index: -1;
+        }
+
+        @keyframes floatHeart {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        .photo-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .photo-frame {
+            width: 200px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+            display: block;
+        }
+
+        .photo-caption {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #555;
+            text-align: center;
+        }
+
+        .photo-frame:hover .photo {
+            filter: brightness(1.1);
+        }
+
+        .reason-container {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .reason-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #e83e8c;
+            font-size: 1.3rem;
+        }
+
+        .reasons {
+            padding-left: 20px;
+        }
+
+        .reasons li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .reasons li::before {
+            content: "❤️";
+            position: absolute;
+            left: -15px;
+            font-size: 14px;
+        }
+
+        .button {
+            background: linear-gradient(45deg, #ff6b6b, #e83e8c);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(232, 62, 140, 0.3);
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(232, 62, 140, 0.4);
+        }
+
+        .surprise-message {
+            display: none;
+            background-color: #ffe6f2;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .music-player {
+            margin-top: 30px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .play-button {
+            background-color: #e83e8c;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 10px rgba(232, 62, 140, 0.3);
+        }
+
+        .song-title {
+            color: #666;
+            font-style: italic;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .song-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: #777;
+            margin-left: 10px;
+        }
+
+        .progress-bar {
+            width: 150px;
+            height: 6px;
+            background-color: #f0f0f0;
+            border-radius: 3px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background-color: #e83e8c;
+            border-radius: 3px;
+            transition: width 0.1s linear;
+        }
+    </style>
 </head>
-<style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
-body {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
-.container {
-    max-width: 800px;
-    width: 100%;
-    padding: 30px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-h1 {
-    color: #e83e8c;
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-p {
-    color: #555;
-    line-height: 1.8;
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-}
-
-.heart {
-    position: absolute;
-    pointer-events: none;
-    animation: floatHeart 4s ease-in-out infinite;
-    opacity: 0.6;
-    z-index: -1;
-}
-
-@keyframes floatHeart {
-    0%, 100% {
-        transform: translateY(0) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-20px) rotate(10deg);
-    }
-}
-
-.photo-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin: 30px 0;
-}
-
-.photo-frame {
-    width: 200px;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-}
-
-.photo-frame:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.photo {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 5px;
-    display: block;
-}
-
-.photo-caption {
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: #555;
-    text-align: center;
-}
-
-.photo-frame:hover .photo {
-    filter: brightness(1.1);
-}
-
-.reason-container {
-    margin: 30px 0;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    text-align: left;
-}
-
-.reason-title {
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #e83e8c;
-    font-size: 1.3rem;
-}
-
-.reasons {
-    padding-left: 20px;
-}
-
-.reasons li {
-    margin-bottom: 10px;
-    position: relative;
-    padding-left: 15px;
-}
-
-.reasons li::before {
-    content: "❤️";
-    position: absolute;
-    left: -15px;
-    font-size: 14px;
-}
-
-.button {
-    background: linear-gradient(45deg, #ff6b6b, #e83e8c);
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    font-size: 1.1rem;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin: 20px 0;
-    box-shadow: 0 4px 15px rgba(232, 62, 140, 0.3);
-}
-
-.button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 7px 20px rgba(232, 62, 140, 0.4);
-}
-
-.surprise-message {
-    display: none;
-    background-color: #ffe6f2;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    animation: fadeIn 1s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.music-player {
-    margin-top: 30px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.music-controls {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-top: 10px;
-}
-
-.play-button {
-    background-color: #e83e8c;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 4px 10px rgba(232, 62, 140, 0.3);
-}
-
-.song-title {
-    color: #666;
-    font-style: italic;
-}
-
-footer {
-    margin-top: 50px;
-    color: #777;
-    font-size: 0.9rem;
-}
-
-.song-progress {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.8rem;
-    color: #777;
-    margin-left: 10px;
-}
-
-.progress-bar {
-    width: 150px;
-    height: 6px;
-    background-color: #f0f0f0;
-    border-radius: 3px;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.progress-fill {
-    height: 100%;
-    width: 0%;
-    background-color: #e83e8c;
-    border-radius: 3px;
-    transition: width 0.1s linear;
-}
-    
-</style>
 <body>
     <div class="container">
         <h1>My Love For You</h1>
@@ -275,7 +273,6 @@ footer {
                 <li>Your incredible strength and determination</li>
                 <li>The sound of your laugh - it's my favorite melody</li>
                 <li>How you care so deeply about me</li>
-                <li>You never leave me</li>
             </ul>
         </div>
         
@@ -283,7 +280,7 @@ footer {
         
         <div class="music-player">
             <div class="song-title">"Happiness" by Rex Orange County</div>
-            <audio id="love-song" src="/Rex Orange County - Happiness (Official Audio).mp3"></audio>
+            <audio id="love-song" src="./Rex Orange County - Happiness (Official Audio).mp3"></audio>
             <div class="music-controls">
                 <button class="play-button" id="play-button">▶</button>
                 <div class="song-progress">
@@ -306,188 +303,187 @@ footer {
     
     <footer>Made with ❤️ just for you</footer>
 
-    <script src="script.js">
-        
-function createHearts() {
-    const container = document.querySelector('body');
-    const colors = ['#ff6b6b', '#e83e8c', '#f06292', '#ff94c2', '#ffb3c1'];
-    
-    for (let i = 0; i < 15; i++) {
-        const heart = document.createElement('div');
-        heart.innerHTML = '❤';
-        heart.classList.add('heart');
-        
-        const size = Math.random() * 30 + 10;
-        const colorIndex = Math.floor(Math.random() * colors.length);
-        
-        heart.style.fontSize = `${size}px`;
-        heart.style.color = colors[colorIndex];
-        heart.style.left = `${Math.random() * 100}%`;
-        heart.style.top = `${Math.random() * 100}%`;
-        heart.style.animationDuration = `${Math.random() * 5 + 3}s`;
-        heart.style.animationDelay = `${Math.random() * 2}s`;
-        
-        container.appendChild(heart);
-    }
-}
-
-function setupReasonAdder() {
-    const addReasonButton = document.getElementById('add-reason');
-    const reasonsList = document.getElementById('reasons-list');
-    
-    addReasonButton.addEventListener('click', function() {
-        const newReason = prompt('Add another reason why you love them:');
-        if (newReason && newReason.trim() !== '') {
-            const li = document.createElement('li');
-            li.textContent = newReason;
-            reasonsList.appendChild(li);
+    <script>
+        function createHearts() {
+            const container = document.querySelector('body');
+            const colors = ['#ff6b6b', '#e83e8c', '#f06292', '#ff94c2', '#ffb3c1'];
             
-            saveReasons();
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('heart');
+                
+                const size = Math.random() * 30 + 10;
+                const colorIndex = Math.floor(Math.random() * colors.length);
+                
+                heart.style.fontSize = `${size}px`;
+                heart.style.color = colors[colorIndex];
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                heart.style.animationDuration = `${Math.random() * 5 + 3}s`;
+                heart.style.animationDelay = `${Math.random() * 2}s`;
+                
+                container.appendChild(heart);
+            }
         }
-    });
-    
-    function loadReasons() {
-        const savedReasons = localStorage.getItem('love-reasons');
-        if (savedReasons) {
-            const reasons = JSON.parse(savedReasons);
-            const defaultCount = 5; 
+
+        function setupReasonAdder() {
+            const addReasonButton = document.getElementById('add-reason');
+            const reasonsList = document.getElementById('reasons-list');
             
-            reasons.forEach((reason, index) => {
-                if (index >= defaultCount) {
+            addReasonButton.addEventListener('click', function() {
+                const newReason = prompt('Add another reason why you love them:');
+                if (newReason && newReason.trim() !== '') {
                     const li = document.createElement('li');
-                    li.textContent = reason;
+                    li.textContent = newReason;
                     reasonsList.appendChild(li);
+                    
+                    saveReasons();
+                }
+            });
+            
+            function loadReasons() {
+                const savedReasons = localStorage.getItem('love-reasons');
+                if (savedReasons) {
+                    const reasons = JSON.parse(savedReasons);
+                    const defaultCount = 5; 
+                    
+                    reasons.forEach((reason, index) => {
+                        if (index >= defaultCount) {
+                            const li = document.createElement('li');
+                            li.textContent = reason;
+                            reasonsList.appendChild(li);
+                        }
+                    });
+                }
+            }
+            
+            function saveReasons() {
+                const items = reasonsList.querySelectorAll('li');
+                const reasons = Array.from(items).map(item => item.textContent);
+                localStorage.setItem('love-reasons', JSON.stringify(reasons));
+            }
+            
+            loadReasons();
+        }
+
+        function setupSurprise() {
+            const surpriseButton = document.getElementById('surprise-button');
+            const surpriseMessage = document.getElementById('surprise-message');
+            
+            surpriseButton.addEventListener('click', function() {
+                surpriseMessage.style.display = 'block';
+                
+                for (let i = 0; i < 30; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.innerHTML = '❤️';
+                        heart.classList.add('heart');
+                        
+                        const size = Math.random() * 30 + 15;
+                        const color = `hsl(${Math.random() * 40 + 340}, 80%, 60%)`;
+                        
+                        heart.style.fontSize = `${size}px`;
+                        heart.style.color = color;
+                        heart.style.left = `50%`;
+                        heart.style.top = `50%`;
+                        heart.style.position = 'fixed';
+                        heart.style.zIndex = '100';
+                        
+                        const angle = Math.random() * Math.PI * 2;
+                        const velocity = Math.random() * 100 + 50;
+                        const xVel = Math.cos(angle) * velocity;
+                        const yVel = Math.sin(angle) * velocity;
+                        
+                        document.body.appendChild(heart);
+                        
+                        let posX = window.innerWidth / 2;
+                        let posY = window.innerHeight / 2;
+                        let opacity = 1;
+                        
+                        const interval = setInterval(() => {
+                            posX += xVel / 15;
+                            posY += yVel / 15;
+                            opacity -= 0.01;
+                            
+                            heart.style.transform = `translate(${posX - posX}px, ${posY - posY}px)`;
+                            heart.style.opacity = opacity;
+                            
+                            if (opacity <= 0) {
+                                clearInterval(interval);
+                                heart.remove();
+                            }
+                        }, 50);
+                    }, i * 100);
                 }
             });
         }
-    }
-    
-    function saveReasons() {
-        const items = reasonsList.querySelectorAll('li');
-        const reasons = Array.from(items).map(item => item.textContent);
-        localStorage.setItem('love-reasons', JSON.stringify(reasons));
-    }
-    
-    loadReasons();
-}
 
-function setupSurprise() {
-    const surpriseButton = document.getElementById('surprise-button');
-    const surpriseMessage = document.getElementById('surprise-message');
-    
-    surpriseButton.addEventListener('click', function() {
-        surpriseMessage.style.display = 'block';
-        
-        for (let i = 0; i < 30; i++) {
-            setTimeout(() => {
-                const heart = document.createElement('div');
-                heart.innerHTML = '❤';
-                heart.classList.add('heart');
-                
-                const size = Math.random() * 30 + 15;
-                const color = `hsl(${Math.random() * 40 + 340}, 80%, 60%)`;
-                
-                heart.style.fontSize = `${size}px`;
-                heart.style.color = color;
-                heart.style.left = `50%`;
-                heart.style.top = `50%`;
-                heart.style.position = 'fixed';
-                heart.style.zIndex = '100';
-                
-                const angle = Math.random() * Math.PI * 2;
-                const velocity = Math.random() * 100 + 50;
-                const xVel = Math.cos(angle) * velocity;
-                const yVel = Math.sin(angle) * velocity;
-                
-                document.body.appendChild(heart);
-                
-                let posX = window.innerWidth / 2;
-                let posY = window.innerHeight / 2;
-                let opacity = 1;
-                
-                const interval = setInterval(() => {
-                    posX += xVel / 15;
-                    posY += yVel / 15;
-                    opacity -= 0.01;
-                    
-                    heart.style.transform = `translate(${posX - posX}px, ${posY - posY}px)`;
-                    heart.style.opacity = opacity;
-                    
-                    if (opacity <= 0) {
-                        clearInterval(interval);
-                        heart.remove();
-                    }
-                }, 50);
-            }, i * 100);
+        function setupMusicPlayer() {
+            const playButton = document.getElementById('play-button');
+            const audio = document.getElementById('love-song');
+            const progressFill = document.getElementById('progress-fill');
+            const progressBar = document.getElementById('progress-bar');
+            const currentTimeDisplay = document.getElementById('current-time');
+            const durationDisplay = document.getElementById('duration');
+            
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = Math.floor(seconds % 60);
+                return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+            }
+            
+            function updateProgress() {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = `${percent}%`;
+                currentTimeDisplay.textContent = formatTime(audio.currentTime);
+            }
+            
+            audio.addEventListener('loadedmetadata', function() {
+                durationDisplay.textContent = formatTime(audio.duration);
+            });
+            
+            audio.addEventListener('timeupdate', updateProgress);
+            
+            progressBar.addEventListener('click', function(e) {
+                const clickPosition = (e.offsetX / progressBar.offsetWidth);
+                audio.currentTime = clickPosition * audio.duration;
+            });
+            
+            playButton.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.textContent = '⏸️';
+                } else {
+                    audio.pause();
+                    playButton.textContent = '▶️';
+                }
+            });
+            
+            audio.addEventListener('ended', function() {
+                playButton.textContent = '▶️';
+                progressFill.style.width = '0%';
+                audio.currentTime = 0;
+            });
         }
-    });
-}
 
-function setupMusicPlayer() {
-    const playButton = document.getElementById('play-button');
-    const audio = document.getElementById('love-song');
-    const progressFill = document.getElementById('progress-fill');
-    const progressBar = document.getElementById('progress-bar');
-    const currentTimeDisplay = document.getElementById('current-time');
-    const durationDisplay = document.getElementById('duration');
-    
-    function formatTime(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = Math.floor(seconds % 60);
-        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-    }
-    
-    function updateProgress() {
-        const percent = (audio.currentTime / audio.duration) * 100;
-        progressFill.style.width = `${percent}%`;
-        currentTimeDisplay.textContent = formatTime(audio.currentTime);
-    }
-    
-    audio.addEventListener('loadedmetadata', function() {
-        durationDisplay.textContent = formatTime(audio.duration);
-    });
-    
-    audio.addEventListener('timeupdate', updateProgress);
-    
-    progressBar.addEventListener('click', function(e) {
-        const clickPosition = (e.offsetX / progressBar.offsetWidth);
-        audio.currentTime = clickPosition * audio.duration;
-    });
-    
-    playButton.addEventListener('click', function() {
-        if (audio.paused) {
-            audio.play();
-            playButton.textContent = '⏸';
-        } else {
-            audio.pause();
-            playButton.textContent = '▶';
+        function setupPhotos() {
+            const photos = document.querySelectorAll('.photo-placeholder');
+            
+            photos.forEach(photo => {
+                photo.addEventListener('click', function() {
+                    alert('To add real photos, you can replace these placeholder divs with actual <img> tags pointing to your photos.');
+                });
+            });
         }
-    });
-    
-    audio.addEventListener('ended', function() {
-        playButton.textContent = '▶';
-        progressFill.style.width = '0%';
-        audio.currentTime = 0;
-    });
-}
 
-function setupPhotos() {
-    const photos = document.querySelectorAll('.photo-placeholder');
-    
-    photos.forEach(photo => {
-        photo.addEventListener('click', function() {
-            alert('To add real photos, you can replace these placeholder divs with actual <img> tags pointing to your photos.');
+        window.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            setupReasonAdder();
+            setupSurprise();
+            setupMusicPlayer();
+            setupPhotos();
         });
-    });
-}
-
-window.addEventListener('DOMContentLoaded', function() {
-    createHearts();
-    setupReasonAdder();
-    setupSurprise();
-    setupMusicPlayer();
-    setupPhotos();
-});
     </script>
     
 </body>
